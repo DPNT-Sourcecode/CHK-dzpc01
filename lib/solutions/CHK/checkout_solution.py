@@ -27,7 +27,12 @@ class Offer(ABC):
 class NOffer:
     @abstractmethod
     @property
-    def N(self) -> str:
+    def N(self) -> int:
+        ...
+
+    @abstractmethod
+    @property
+    def letter(self) -> str:
         ...
 
 
@@ -37,7 +42,12 @@ class NOffer:
         ...
 
     def apply(self, state: State) -> State:
-        
+        price = state.unprocessed_basket.get(self.letter, 0) // self.N * self.for_
+
+        basked = st
+
+
+
 
 
 
@@ -78,5 +88,6 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
 
 
