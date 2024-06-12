@@ -53,7 +53,7 @@ class FreeOffer(Offer):
             basket = state.unprocessed_basket.set(self.get_free_letter, max(0, get_free_items - free_items))
             return State(current_cost=state.current_cost, unprocessed_basket=basket)
 
-        basket = state.unprocessed_basket.set(self.get_free_letter, 0)
+        basket = state.unprocessed_basket.set(self.get_free_letter, buy_items // (self.N + 1) * self.N + buy_items % (self.N + 1))
         return State(current_cost=state.current_cost, unprocessed_basket=basket)
 
 
@@ -135,5 +135,6 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
 
 
