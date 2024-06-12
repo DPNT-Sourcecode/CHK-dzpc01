@@ -17,13 +17,13 @@ class TestCheckout(TestCase):
 
 
     def test_e_disables_b(self):
-        assert checkout_solution.checkout("AAAABBBBBCCDEE") == 390
+        assert checkout_solution.checkout("AAAABBBBCCDEE") == 390
         # AAA+A = 130 + 50 = 180
-        # BBBB+B-BB = 45 + 30 = 75
+        # BBB+B-BB = 45 + 30 = 75
         # CC = 20 * 2 = 40
         # D = 15 * 1 = 15
         # EE = 40 * 2 = 80
-        # 180 + 75 + 40 + 15 + 80 = 390
+        # 180 + 75 + 40 + 80 = 390
 
 
     def test_format(self):
@@ -31,6 +31,7 @@ class TestCheckout(TestCase):
 
     def test_empty(self):
         assert checkout_solution.checkout("") == 0
+
 
 
 
