@@ -6,9 +6,24 @@ from collections import defaultdict
 
 
 def get_total(basket: dict[str, int]) -> int:
-    return (basket.get("A", 0) // 3 * 130 + basket.get("A", 0) % 3 * 50 +
-            basket.get("B", 0) // 2 * 45 + basket.get("B", 0) % 2 * 30 +
-            basket.get("C", 0) * 20 + basket.get("D", 0) * 15)
+    A = basket.get("A", 0)
+    B = basket.get("B", 0)
+    C = basket.get("C", 0)
+    D = basket.get("D", 0)
+    E = basket.get("E", 0)
+
+    total = 0
+    total += A // 5 * 200
+    total += (A % 5) // 3 * 130
+    total += (A % 5) % 3 * 50
+
+    B = max(0, B - E // 2)
+    total += (B // 2) * 45 + (B % 2) * 30
+
+    total += C * 20
+    total += D * 15
+    total += E * 40
+    return total
 
 
 def checkout(skus: str) -> int:
@@ -16,11 +31,12 @@ def checkout(skus: str) -> int:
     counts: dict[str, int] = defaultdict(int)
 
     for s in skus:
-        if s in "ABCD":
+        if s in "ABCDE":
             counts[s] += 1
         else:
             return -1
 
     return get_total(counts)
+
 
 
