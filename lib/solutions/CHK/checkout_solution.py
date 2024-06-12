@@ -53,8 +53,34 @@ class FreeOffer(Offer):
             basket = state.unprocessed_basket.set(self.get_free_letter, max(0, get_free_items - free_items))
             return State(current_cost=state.current_cost, unprocessed_basket=basket)
 
-        basket = state.unprocessed_basket.set(self.get_free_letter, buy_items // (self.N + 1) * self.N + buy_items % (self.N + 1))
+        basket = state.unprocessed_basket.set(self.get_free_letter,
+                                              buy_items // (self.N + 1) * self.N + buy_items % (self.N + 1))
         return State(current_cost=state.current_cost, unprocessed_basket=basket)
+
+
+@dataclasses.dataclass(frozen=True)
+class AnyOffer(Offer):
+    letters: str
+    price: int
+    N: int
+
+    def apply(self, state: State) -> State:
+        total_items = sum([state.unprocessed_basket.get(l, 0) for l in self.letters])
+        num_offers = total_items // self.N
+
+        remaining_items = self.N * num_offers
+        basket = state.unprocessed_basket
+        for letter in self.letters:
+            value = basket.get(letter, 0)
+            new_value = max(0, value - remaining_items)
+
+            remaining_items = value - new_value
+            basket = basket.set(letter, new_value)
+
+            if remaining_items == 0:
+                break
+
+        return State(current_cost=state.current_cost + self.price * num_offers, unprocessed_basket=basket)
 
 
 @dataclasses.dataclass(frozen=True)
@@ -68,6 +94,7 @@ class JustOffer(Offer):
 
 
 offers = [
+    AnyOffer(letters="ZYSTX", N=3, price=45),  # cheapest has to go latest
     FreeOffer(N=2, buy_letter="E", get_free_letter="B"),
     FreeOffer(N=2, buy_letter="F", get_free_letter="F"),
     FreeOffer(N=3, buy_letter="N", get_free_letter="M"),
@@ -135,6 +162,7 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
 
 
 
