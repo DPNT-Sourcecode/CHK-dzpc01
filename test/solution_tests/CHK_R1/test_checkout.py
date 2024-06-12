@@ -62,6 +62,3 @@ class TestJustOffer(TestCase):
         new_state = offer.apply(state)
         assert new_state.current_cost == 600
         assert new_state.unprocessed_basket == {"A": 0, "B": 20}
-
-
-

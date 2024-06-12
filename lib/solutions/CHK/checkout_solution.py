@@ -64,7 +64,44 @@ class JustOffer(Offer):
 
 
 offers = [
+    FreeOffer(N=2, buy_letter="E", get_free_letter="B"),
+    FreeOffer(N=2, buy_letter="F", get_free_letter="F"),
+
+
     NOffer(N=5, letter="A", for_=200),
+    NOffer(N=3, letter="A", for_=130),
+    NOffer(N=2, letter="B", for_=45),
+    NOffer(N=10, letter="H", for_=80),
+
+
+
+    JustOffer(letter="A", price=50),
+    JustOffer(letter="B", price=30),
+    JustOffer(letter="C", price=20),
+    JustOffer(letter="D", price=15),
+    JustOffer(letter="E", price=40),
+    JustOffer(letter="F", price=10),
+    JustOffer(letter="G", price=20),
+    JustOffer(letter="H", price=10),
+    JustOffer(letter="I", price=35),
+    JustOffer(letter="J", price=60),
+    JustOffer(letter="K", price=80),
+    JustOffer(letter="L", price=90),
+    JustOffer(letter="M", price=15),
+    JustOffer(letter="N", price=40),
+    JustOffer(letter="O", price=10),
+    JustOffer(letter="P", price=50),
+    JustOffer(letter="Q", price=30),
+    JustOffer(letter="R", price=50),
+    JustOffer(letter="S", price=30),
+    JustOffer(letter="T", price=20),
+    JustOffer(letter="U", price=40),
+    JustOffer(letter="V", price=50),
+    JustOffer(letter="W", price=20),
+    JustOffer(letter="X", price=90),
+    JustOffer(letter="Y", price=10),
+    JustOffer(letter="Z", price=50),
+
 ]
 
 
@@ -104,9 +141,3 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
-
-
-
-
-
-
