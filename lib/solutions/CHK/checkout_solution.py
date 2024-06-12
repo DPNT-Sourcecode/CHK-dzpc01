@@ -97,6 +97,7 @@ class JustOffer(Offer):
 
 offers = [
     AnyOffer(letters="ZYSTX", N=3, price=45),  # cheapest has to go latest
+
     FreeOffer(N=2, buy_letter="E", get_free_letter="B"),
     FreeOffer(N=2, buy_letter="F", get_free_letter="F"),
     FreeOffer(N=3, buy_letter="N", get_free_letter="M"),
@@ -108,7 +109,7 @@ offers = [
     NOffer(N=2, letter="B", for_=45),
     NOffer(N=10, letter="H", for_=80),
     NOffer(N=5, letter="H", for_=45),
-    NOffer(N=2, letter="K", for_=150),
+    NOffer(N=2, letter="K", for_=120),
     NOffer(N=5, letter="P", for_=200),
     NOffer(N=3, letter="Q", for_=80),
     NOffer(N=3, letter="V", for_=130),
@@ -164,5 +165,6 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
 
 
