@@ -77,8 +77,12 @@ class AnyOffer(Offer):
             remaining_items = value - new_value
             basket = basket.set(letter, new_value)
 
+            print(f"[{letter}] {value} → {new_value}. {remaining_items=}")
+
             if remaining_items == 0:
                 break
+
+        assert remaining_items == 0
 
         return State(current_cost=state.current_cost + self.price * num_offers, unprocessed_basket=basket)
 
@@ -162,8 +166,3 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
-
-
-
-
-

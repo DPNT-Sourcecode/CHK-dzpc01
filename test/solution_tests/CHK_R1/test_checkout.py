@@ -67,3 +67,11 @@ class TestJustOffer(TestCase):
         assert new_state.current_cost == 600
         assert new_state.unprocessed_basket == {"A": 0, "B": 20}
 
+
+class TestAnyOffer(TestCase):
+    def test_apply(self):
+        state = checkout_solution.State(current_cost=0, unprocessed_basket=frozendict({"A": 9, "B": 7, "C": 3, "D": 2}))
+        offer = checkout_solution.AnyOffer(letters="ABC", N=3, price=1)
+        new_state = offer.apply(state)
+        assert new_state.current_cost == 6
+        assert new_state.unprocessed_basket == {"A": 0, "B": 0, "C": 1, "D": 2}
