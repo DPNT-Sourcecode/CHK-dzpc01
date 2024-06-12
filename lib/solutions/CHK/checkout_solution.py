@@ -6,12 +6,12 @@ from collections import defaultdict
 
 
 def get_total(basket: dict[str, int]) -> int:
-    print(basket)
     A = basket.get("A", 0)
     B = basket.get("B", 0)
     C = basket.get("C", 0)
     D = basket.get("D", 0)
     E = basket.get("E", 0)
+    F = basket.get("F", 0)
 
     total = 0
     total += A // 5 * 200
@@ -25,7 +25,7 @@ def get_total(basket: dict[str, int]) -> int:
     total += D * 15
     total += E * 40
 
-    print(A, B, C, D, E)
+    total += ((F // 3) * 2 +(F % 3) ) * 10
 
     return total
 
@@ -35,13 +35,9 @@ def checkout(skus: str) -> int:
     counts: dict[str, int] = defaultdict(int)
 
     for s in skus:
-        if s in "ABCDE":
+        if s in "ABCDEF":
             counts[s] += 1
         else:
             return -1
 
     return get_total(counts)
-
-
-
-

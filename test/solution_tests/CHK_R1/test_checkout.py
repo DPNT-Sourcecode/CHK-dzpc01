@@ -31,8 +31,3 @@ class TestCheckout(TestCase):
 
     def test_empty(self):
         assert checkout_solution.checkout("") == 0
-
-
-
-
-
