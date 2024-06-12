@@ -74,10 +74,8 @@ class AnyOffer(Offer):
             value = basket.get(letter, 0)
             new_value = max(0, value - remaining_items)
 
-            remaining_items = value - new_value
+            remaining_items -= value - new_value
             basket = basket.set(letter, new_value)
-
-            print(f"[{letter}] {value} → {new_value}. {remaining_items=}")
 
             if remaining_items == 0:
                 break
@@ -166,3 +164,4 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
