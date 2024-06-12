@@ -15,3 +15,6 @@ class TestCheckout(TestCase):
         # D = 15 * 1 = 15
         # 180 + 75 + 40 + 15 = 310
 
+    def test_format(self):
+        assert checklite_solution.checklite("a b") == 80
+

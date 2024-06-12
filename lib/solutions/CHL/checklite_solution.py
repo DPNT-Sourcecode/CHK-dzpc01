@@ -6,9 +6,9 @@ from collections import defaultdict
 
 
 def get_total(basket: dict[int, int]) -> int:
-    return (basket.get("A") // 3 * 130 + basket.get("A") % 3 * 50 +
-            basket.get("B") // 2 * 45 + basket.get("B") % 2 * 30 +
-            basket.get("C") * 20 + basket.get("D") * 15)
+    return (basket.get("A", 0) // 3 * 130 + basket.get("A", 0) % 3 * 50 +
+            basket.get("B", 0) // 2 * 45 + basket.get("B", 0) % 2 * 30 +
+            basket.get("C", 0) * 20 + basket.get("D", 0) * 15)
 
 
 def checklite(skus: str) -> int:
