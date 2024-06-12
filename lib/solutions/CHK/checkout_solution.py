@@ -6,6 +6,7 @@ from collections import defaultdict
 
 
 def get_total(basket: dict[str, int]) -> int:
+    print(basket)
     A = basket.get("A", 0)
     B = basket.get("B", 0)
     C = basket.get("C", 0)
@@ -23,6 +24,9 @@ def get_total(basket: dict[str, int]) -> int:
     total += C * 20
     total += D * 15
     total += E * 40
+
+    print(A, B, C, D, E)
+
     return total
 
 
@@ -37,6 +41,7 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
 
 
 
