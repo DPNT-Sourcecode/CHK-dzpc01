@@ -1,8 +1,21 @@
+from abc import abstractmethod
 from collections import defaultdict
+
+from frozendict import frozendict
 
 
 # noinspection PyUnusedLocal
 # skus = unicode string
+
+class Offer(ABC):
+    def __init__(self):
+        ...
+
+    @abstractmethod
+    def apply(self, state: frozendict[str, int], 
+
+class NOffer:
+
 
 
 def get_total(basket: dict[str, int]) -> int:
@@ -41,3 +54,4 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
