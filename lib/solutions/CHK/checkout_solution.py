@@ -66,14 +66,20 @@ class JustOffer(Offer):
 offers = [
     FreeOffer(N=2, buy_letter="E", get_free_letter="B"),
     FreeOffer(N=2, buy_letter="F", get_free_letter="F"),
-
+    FreeOffer(N=3, buy_letter="N", get_free_letter="M"),
+    FreeOffer(N=3, buy_letter="R", get_free_letter="Q"),
+    FreeOffer(N=3, buy_letter="U", get_free_letter="U"),
 
     NOffer(N=5, letter="A", for_=200),
     NOffer(N=3, letter="A", for_=130),
     NOffer(N=2, letter="B", for_=45),
     NOffer(N=10, letter="H", for_=80),
-
-
+    NOffer(N=5, letter="H", for_=45),
+    NOffer(N=2, letter="K", for_=150),
+    NOffer(N=5, letter="P", for_=200),
+    NOffer(N=3, letter="Q", for_=80),
+    NOffer(N=3, letter="V", for_=130),
+    NOffer(N=2, letter="V", for_=90),
 
     JustOffer(letter="A", price=50),
     JustOffer(letter="B", price=30),
@@ -106,28 +112,12 @@ offers = [
 
 
 def get_total(basket: dict[str, int]) -> int:
-    A = basket.get("A", 0)
-    B = basket.get("B", 0)
-    C = basket.get("C", 0)
-    D = basket.get("D", 0)
-    E = basket.get("E", 0)
-    F = basket.get("F", 0)
+    state = State(current_cost=0, unprocessed_basket=frozendict(basket))
+    for offer in offers:
+        state = offer.apply(state)
 
-    total = 0
-    total += A // 5 * 200
-    total += (A % 5) // 3 * 130
-    total += (A % 5) % 3 * 50
-
-    B = max(0, B - E // 2)
-    total += (B // 2) * 45 + (B % 2) * 30
-
-    total += C * 20
-    total += D * 15
-    total += E * 40
-
-    total += ((F // 3) * 2 + (F % 3)) * 10
-
-    return total
+    assert max(state.unprocessed_basket.values()) == 0
+    return state.current_cost
 
 
 def checkout(skus: str) -> int:
@@ -141,3 +131,4 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
