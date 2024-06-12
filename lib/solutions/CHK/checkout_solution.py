@@ -34,13 +34,29 @@ class NOffer(Offer):
         items = state.unprocessed_basket.get(self.letter, 0)
         price = items // self.N * self.for_
 
-        basked = state.unprocessed_basket.set(self.letter, items & self.N)
-        return State(current_cost=state.current_cost + price, unprocessed_basket=basked)
+        basket = state.unprocessed_basket.set(self.letter, items % self.N)
+        return State(current_cost=state.current_cost + price, unprocessed_basket=basket)
+
+
+@dataclasses.dataclass(frozen=True)
+class FreeOffer(Offer):
+    N: int
+    buy_letter: str
+    get_free_letter: str
+
+    def apply(self, state: State) -> State:
+        buy_items = state.unprocessed_basket.get(self.buy_letter, 0)
+        get_free_items = state.unprocessed_basket.get(self.get_free_letter, 0)
+
+        free_items = buy_items // self.N
+        basket = state.unprocessed_basket.set(self.get_free_letter, max(0, get_free_items - free_items))
+        return State(current_cost=state.current_cost, unprocessed_basket=basket)
 
 
 offers = [
     NOffer(N=5, letter="A", for_=200),
 ]
+
 
 def get_total(basket: dict[str, int]) -> int:
     A = basket.get("A", 0)
@@ -78,6 +94,7 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
 
 
 
