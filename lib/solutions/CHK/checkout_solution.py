@@ -12,7 +12,7 @@ def get_total(basket: dict[str, int]) -> int:
 
 
 def checkout(skus: str) -> int:
-    skus = skus.upper().replace(' ', '')  # don't know the format yet
+    skus = skus.replace(' ', '')  # don't know the format yet
     counts: dict[str, int] = defaultdict(int)
 
     for s in skus:
@@ -22,4 +22,5 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
 

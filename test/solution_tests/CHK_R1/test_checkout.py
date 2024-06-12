@@ -16,8 +16,9 @@ class TestCheckout(TestCase):
         # 180 + 75 + 40 + 15 = 310
 
     def test_format(self):
-        assert checkout_solution.checkout("a b") == 80
+        assert checkout_solution.checkout("a b") == -1
 
     def test_empty(self):
         assert checkout_solution.checkout("") == 0
+
 
