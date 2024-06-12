@@ -20,5 +20,3 @@ class TestCheckout(TestCase):
 
     def test_empty(self):
         assert checklite_solution.checklite("") == 0
-
-

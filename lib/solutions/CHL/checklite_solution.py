@@ -22,5 +22,3 @@ def checklite(skus: str) -> int:
             return -1
 
     return get_total(counts)
-
-
