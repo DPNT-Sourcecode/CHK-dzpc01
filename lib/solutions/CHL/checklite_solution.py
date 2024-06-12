@@ -5,7 +5,7 @@ from collections import defaultdict
 # skus = unicode string
 
 
-def get_total(basket: dict[int, int]) -> int:
+def get_total(basket: dict[str, int]) -> int:
     return (basket.get("A", 0) // 3 * 130 + basket.get("A", 0) % 3 * 50 +
             basket.get("B", 0) // 2 * 45 + basket.get("B", 0) % 2 * 30 +
             basket.get("C", 0) * 20 + basket.get("D", 0) * 15)
@@ -22,4 +22,5 @@ def checklite(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
 
