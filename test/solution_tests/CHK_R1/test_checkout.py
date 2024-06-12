@@ -18,3 +18,7 @@ class TestCheckout(TestCase):
     def test_format(self):
         assert checklite_solution.checklite("a b") == 80
 
+    def test_empty(self):
+        assert checklite_solution.checklite("") == 0
+
+
