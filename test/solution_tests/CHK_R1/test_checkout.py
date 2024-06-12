@@ -1,14 +1,14 @@
 from unittest import TestCase
 
-from solutions.CHL import checklite_solution
+from solutions.CHK import checkout_solution
 
 
 class TestCheckout(TestCase):
     def test_incorrect(self):
-        assert checklite_solution.checklite("ABCDE") == -1
+        assert checkout_solution.checkout("ABCDE") == -1
 
     def test_discounts(self):
-        assert checklite_solution.checklite("AAAABBBCCD") == 310
+        assert checkout_solution.checkout("AAAABBBCCD") == 310
         # AAA+A = 130 + 50 = 180
         # BB+B = 45 + 30 = 75
         # CC = 20 * 2 = 40
@@ -16,7 +16,8 @@ class TestCheckout(TestCase):
         # 180 + 75 + 40 + 15 = 310
 
     def test_format(self):
-        assert checklite_solution.checklite("a b") == 80
+        assert checkout_solution.checkout("a b") == 80
 
     def test_empty(self):
-        assert checklite_solution.checklite("") == 0
+        assert checkout_solution.checkout("") == 0
+
