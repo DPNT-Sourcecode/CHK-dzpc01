@@ -31,3 +31,8 @@ class TestCheckout(TestCase):
 
     def test_empty(self):
         assert checkout_solution.checkout("") == 0
+
+    def test_f(self):
+        assert checkout_solution.checkout("FFFFFFFF") == 60
+        # FF[F] FF[F] FF, where [F] is a free item
+
