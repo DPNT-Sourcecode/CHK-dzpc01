@@ -46,3 +46,22 @@ class TestNOffer(TestCase):
         assert new_state.unprocessed_basket == {"A": 2, "B": 20}
 
 
+class TestFreeOffer(TestCase):
+    def test_apply(self):
+        state = checkout_solution.State(current_cost=0, unprocessed_basket=frozendict({"A": 12, "B": 20}))
+        offer = checkout_solution.FreeOffer(N=5, buy_letter="A", get_free_letter="B")
+        new_state = offer.apply(state)
+        assert new_state.current_cost == 0
+        assert new_state.unprocessed_basket == {"A": 12, "B": 18}
+
+
+class TestJustOffer(TestCase):
+    def test_apply(self):
+        state = checkout_solution.State(current_cost=0, unprocessed_basket=frozendict({"A": 3, "B": 20}))
+        offer = checkout_solution.JustOffer(letter="A", price=200)
+        new_state = offer.apply(state)
+        assert new_state.current_cost == 600
+        assert new_state.unprocessed_basket == {"A": 0, "B": 20}
+
+
+

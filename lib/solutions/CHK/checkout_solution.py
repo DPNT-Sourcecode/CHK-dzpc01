@@ -53,6 +53,16 @@ class FreeOffer(Offer):
         return State(current_cost=state.current_cost, unprocessed_basket=basket)
 
 
+@dataclasses.dataclass(frozen=True)
+class JustOffer(Offer):
+    letter: str
+    price: int
+
+    def apply(self, state: State) -> State:
+        return State(current_cost=state.current_cost + self.price * state.unprocessed_basket.get(self.letter, 0),
+                     unprocessed_basket=state.unprocessed_basket.set(self.letter, 0))
+
+
 offers = [
     NOffer(N=5, letter="A", for_=200),
 ]
@@ -94,6 +104,7 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
 
 
 
