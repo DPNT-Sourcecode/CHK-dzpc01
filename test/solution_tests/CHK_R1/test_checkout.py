@@ -6,7 +6,7 @@ from solutions.CHK import checkout_solution
 
 class TestCheckout(TestCase):
     def test_incorrect(self):
-        assert checkout_solution.checkout("ABCDEFGH") == -1
+        assert checkout_solution.checkout("ABCDEFGHЯ") == -1
 
     def test_discounts(self):
         assert checkout_solution.checkout("AAAAAAAAABBBCCD") == 510
@@ -35,6 +35,10 @@ class TestCheckout(TestCase):
         assert checkout_solution.checkout("FFFFFFFF") == 60
         # FF[F] FF[F] FF, where [F] is a free item
 
+    def test_g(self):
+        assert checkout_solution.checkout("G") == 20
+
+
 
 class TestNOffer(TestCase):
     def test_apply(self):
@@ -62,3 +66,4 @@ class TestJustOffer(TestCase):
         new_state = offer.apply(state)
         assert new_state.current_cost == 600
         assert new_state.unprocessed_basket == {"A": 0, "B": 20}
+

@@ -129,12 +129,13 @@ def checkout(skus: str) -> int:
     counts: dict[str, int] = defaultdict(int)
 
     for s in skus:
-        if s in "ABCDEF":
+        if s in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
             counts[s] += 1
         else:
             return -1
 
     return get_total(counts)
+
 
 
 
