@@ -14,6 +14,7 @@ class State:
     current_cost: int
     unprocessed_basket: frozendict[str, int]
 
+
 class Offer(ABC):
     def __init__(self):
         ...
@@ -23,34 +24,23 @@ class Offer(ABC):
         ...
 
 
-
-class NOffer:
-    @abstractmethod
-    @property
-    def N(self) -> int:
-        ...
-
-    @abstractmethod
-    @property
-    def letter(self) -> str:
-        ...
-
-
-    @abstractmethod
-    @property
-    def for_(self):
-        ...
+@dataclasses.dataclass(frozen=True)
+class NOffer(Offer):
+    N: int
+    letter: str
+    for_: int
 
     def apply(self, state: State) -> State:
-        price = state.unprocessed_basket.get(self.letter, 0) // self.N * self.for_
+        items = state.unprocessed_basket.get(self.letter, 0)
+        price = items // self.N * self.for_
 
-        basked = st
-
-
-
-
+        basked = state.unprocessed_basket.set(self.letter, items & self.N)
+        return State(current_cost=state.current_cost + price, unprocessed_basket=basked)
 
 
+offers = [
+    NOffer(N=5, letter="A", for_=200),
+]
 
 def get_total(basket: dict[str, int]) -> int:
     A = basket.get("A", 0)
@@ -72,7 +62,7 @@ def get_total(basket: dict[str, int]) -> int:
     total += D * 15
     total += E * 40
 
-    total += ((F // 3) * 2 +(F % 3) ) * 10
+    total += ((F // 3) * 2 + (F % 3)) * 10
 
     return total
 
@@ -88,6 +78,7 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
 
 
 
