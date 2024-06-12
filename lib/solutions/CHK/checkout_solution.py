@@ -1,4 +1,5 @@
-from abc import abstractmethod
+import dataclasses
+from abc import abstractmethod, ABC
 from collections import defaultdict
 
 from frozendict import frozendict
@@ -7,14 +8,37 @@ from frozendict import frozendict
 # noinspection PyUnusedLocal
 # skus = unicode string
 
+
+@dataclasses.dataclass(frozen=True)
+class State:
+    current_cost: int
+    unprocessed_basket: frozendict[str, int]
+
 class Offer(ABC):
     def __init__(self):
         ...
 
     @abstractmethod
-    def apply(self, state: frozendict[str, int], 
+    def apply(self, state: State) -> State:
+        ...
+
+
 
 class NOffer:
+    @abstractmethod
+    @property
+    def N(self) -> str:
+        ...
+
+
+    @abstractmethod
+    @property
+    def for_(self):
+        ...
+
+    def apply(self, state: State) -> State:
+        
+
 
 
 
@@ -54,4 +78,5 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
 
