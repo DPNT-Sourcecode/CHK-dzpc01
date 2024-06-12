@@ -124,7 +124,7 @@ offers = [
     JustOffer(letter="H", price=10),
     JustOffer(letter="I", price=35),
     JustOffer(letter="J", price=60),
-    JustOffer(letter="K", price=80),
+    JustOffer(letter="K", price=70),
     JustOffer(letter="L", price=90),
     JustOffer(letter="M", price=15),
     JustOffer(letter="N", price=40),
@@ -132,14 +132,14 @@ offers = [
     JustOffer(letter="P", price=50),
     JustOffer(letter="Q", price=30),
     JustOffer(letter="R", price=50),
-    JustOffer(letter="S", price=30),
+    JustOffer(letter="S", price=20),
     JustOffer(letter="T", price=20),
     JustOffer(letter="U", price=40),
     JustOffer(letter="V", price=50),
     JustOffer(letter="W", price=20),
-    JustOffer(letter="X", price=90),
-    JustOffer(letter="Y", price=10),
-    JustOffer(letter="Z", price=50),
+    JustOffer(letter="X", price=17),
+    JustOffer(letter="Y", price=20),
+    JustOffer(letter="Z", price=21),
 
 ]
 
@@ -164,4 +164,5 @@ def checkout(skus: str) -> int:
             return -1
 
     return get_total(counts)
+
 

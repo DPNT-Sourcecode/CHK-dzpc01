@@ -38,6 +38,9 @@ class TestCheckout(TestCase):
     def test_g(self):
         assert checkout_solution.checkout("G") == 20
 
+    def test_k(self):
+        assert checkout_solution.checkout("K") == 70
+
 
 
 class TestNOffer(TestCase):
